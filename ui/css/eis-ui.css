@@ -1,0 +1,47 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 16, 2017, 4:29:39 PM
+    Author     : LENOVO PC
+*/
+
+.top-section{
+    display:none;
+}
+
+#eis-top-menuitem{
+    margin-top: -15px;
+}
+
+.eis-menu-item{
+    border: 1px  #2C3E50 solid;
+    background-color: #34495E;   
+} 
+
+.eis-menu-item .eis-menu-icon{
+    position: relative;
+    display: inline-block;
+    padding: 20px;
+    color:#7F8C8D;
+    font-size: 25px;
+    top:-12px;
+}
+
+.eis-menu-item .eis-menu-label {
+    position: relative;
+    display: inline-block;
+}
+
+.eis-menu-item a{
+    color:#fff;
+    font-weight: bold;
+}
+
+.eis-menu-item label{
+    color:#7F8C8D;
+    font-size:12px;
+    padding-left: 25px;
+}

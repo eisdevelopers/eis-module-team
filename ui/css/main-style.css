@@ -1,0 +1,292 @@
+/*
+ Project    : EIS Subscription Module
+ EAO IT Services Pvt. Ltd. | www.eaoservices.com
+ Copyright reserved @2017
+
+ File Description :
+
+ Created on : 1 Aug, 2017 | 10:22:00 PM
+ Author     : Bilal Wani
+ Email      : bilal.wani@eaoservices
+
+*/
+html{
+    position: relative;
+    /*width: 100%;*/
+
+}
+
+.eis-subscribe,
+.eis-form-general{
+    margin: 30px auto;
+    position: relative;
+    background-image: url(../img/bg-02.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;    
+    padding: 60px 0;
+}
+
+.eis-subscribe h1,
+.eis-form-general h1{
+    padding-bottom: 40px;
+    font-size: 2.5em;
+    font-weight: 700;
+    font-family: monospace;
+    color: #dae4bb;
+}
+
+.eis-subscribe button,
+.eis-form-general button{
+    border: none;
+    border-radius: 0;
+    font-size: 1.5em;
+    background: #8b0000;
+    padding: 15px 30px;
+    font-weight: 700;
+}
+
+.eis-input-group{
+    /*width: 50%;*/
+    border: 1px #fff solid;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+#radiogender{
+    padding: 0px;
+}
+
+.eis-input-group .eis-add-on{
+    float: left;
+    padding: 4px;
+    /* border: 1px #00f solid; */
+    display: table-cell;
+    position: relative;
+    text-align: center;
+    width: 10%;
+    height: auto;
+    vertical-align: bottom;
+    font-size: 1.3em;
+    padding-top: 8px;
+    color: #dae4bb;
+
+}
+
+.eis-input-group .form-control{
+    border: none;
+    border-radius: 0;
+    width: 90%;
+    border-left: 2px green solid;
+    background: rgba(8, 8, 8, 0.52);
+    color: #fff;
+}
+
+@media (max-width: 600px){
+    .eis-input-group{
+        width: 80% !important;
+    }
+    .eis-subscribe,
+    eis-form-general{
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 601px){
+    .eis-input-group{
+        width: 60%;
+    }
+    .eis-subscribe,
+    .eis-form-general{
+        width: 60%;
+    }   
+}
+
+#server-response{
+    width : 100%;
+    padding: 15px 30px;
+    text-align: center;
+    background: red;
+    color: white;        
+}
+
+#server-response button{
+    background: lightblue;
+    color: black;
+    font-size: 1em;
+}
+.team-wrapper{
+    box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.2);
+}
+.team-des {
+    cursor: pointer;
+    position: relative;
+    bottom: 0;
+    transition: all 0.4s linear;
+    padding: 62px 22px 62px 22px;
+    background-color: transparent;;
+}
+
+.team-des:hover {
+    background: rgba(45,67,72,0.6);
+    bottom: 20px;
+    padding: 0 16px;
+}
+
+/*
+* For desktops and large devices
+*/
+@media all and (min-width:768px){
+
+    .eis-resume-personal .eis-input-group{        
+        width: 90%;
+        position: relative;
+        display: block;
+        float: left;
+    }
+
+    .eis-resume-personal{
+        width: 90%;
+        padding: 60px;
+        display: table;  /* Important change */
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .eis-resume-personal .eis-label{
+        padding-top: 20px;
+        text-align: right;
+        position: relative;
+        color: #fff;
+    }
+
+    .eis-resume-personal .eis-row{
+        margin-top: 15px;
+        margin-bottom: 15px;
+        min-height: 60px;  /* For float:left, check impact of min-height property */
+    }
+    .eis-resume-personal .radio-inline{
+        color:lightgrey;
+    }
+}
+
+/*
+* For Mobile and small devices.
+*/
+@media all and (max-width:768px){
+
+    .eis-resume-personal .eis-input-group {
+        width: 100% !important; 
+        border: 1px #fff solid;
+        vertical-align: middle;
+        /* padding: 10px; */
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+    }
+    .eis-resume-personal .eis-label{
+        color: #fff;
+    }
+    .eis-resume-personal .radio-inline{
+        color:lightgrey;
+    }
+}
+
+.eis-admin-container{
+
+}
+
+.eis-admin-container .button-strip{
+
+}
+
+.eis-admin-container .img-circle{
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+}
+
+.eis-admin-container  td{
+    text-align: center;
+    border: 1px solid black;
+
+}
+.eis-admin-container  th{
+    border: 1px solid black;
+    text-align: center;
+
+}
+.eis-admin-container button{
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin: 4px 10px;
+    background: lightblue;
+
+}
+.eis-admin-container button:hover{
+    background: lightyellow;
+}
+
+.eis-admin-container input[type='text']{
+    border: none;
+}
+.eis-team-container{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+h1{
+    text-align: center;
+}
+
+.eis-team-profile{
+    width: 25%;
+    position: relative;
+    display: inline-block;
+    float: left;
+    background-color: darkgray; 
+    height: 600px; 
+    color: #8a0b0b;
+
+    text-align: center;
+    padding: 12px;
+    margin: 10px;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 25px;
+    box-sizing: border-box;
+}
+.eis-team-profile img{
+    border-radius:50%;
+    position: relative;
+    display: block;
+    text-align:center;
+    width : 160px;
+    height: 160px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+@media screen and (max-width:760px){
+    .eis-team-profile{
+        width : 50%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+@media screen and (max-width:480px){
+    .eis-team-profile{
+        width : 90%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
