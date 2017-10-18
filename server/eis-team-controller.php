@@ -177,6 +177,7 @@ if (isset($_REQUEST)) {
     //$message = $_GET;
 //      echo $method;
     switch ($method) {
+        //Handle Post Request
         case "POST":
             global $g_server, $g_pwd, $g_user, $g_db;
 
@@ -198,6 +199,8 @@ if (isset($_REQUEST)) {
             }
 
             break;
+
+        //Handle Get Request
         case "GET":
             global $g_server, $g_pwd, $g_user, $g_db;
 
