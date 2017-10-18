@@ -1,4 +1,12 @@
-
+/*
+ * File : main.js
+ * Description: Main JS file for all partial forms related to members of the team
+ * Author: Nazoo Akhter
+ * Company: EAO IT SERVICES
+ * 
+ * History:
+ * Created  - 17-Oct-2017
+ */
 /*
  * @config 
  */
