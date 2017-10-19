@@ -145,5 +145,22 @@ if (!class_exists('EisTeamModel')) {
             $this->ExecuteCUDQuery($query);
             return $this->GetErrorNum();
         }
+        
+        /*
+         * 
+         * returns:
+         *      On success returns associative array, else null
+         */
+        public function GetMemberData($id) {
+            $query = "SELECT * FROM `$this->m_table_name` where id = $id";
+            $result = $this->ExecuteSelectQuery($query);
+            
+            if($result){
+                return $result;
+            }
+            
+            return null;
+           
+        }
     }
 }
