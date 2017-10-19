@@ -140,6 +140,12 @@ if (!class_exists('EisTeamModel')) {
             $data = $this->ExecuteSelectQuery($query);
             return $this->GetErrorNum();
         }
+        
+       /* function SetMemberStatus
+         * Description: This function sets the status of a member using given ID
+         * returns:
+         * On success returns associative array, else null
+         */ 
         public function SetMemberStatus($id){
             $query ="update`" . $this->m_table_name ."` set status=1-status where id='$id'";
             $this->ExecuteCUDQuery($query);
