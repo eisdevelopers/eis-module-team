@@ -6,6 +6,7 @@
  * 
  * History:
  * Created  - 17-Oct-2017
+ * Modified - Bilal Wani - Introduced class structure
  */
 /*
  * @config 
