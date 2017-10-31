@@ -10,7 +10,7 @@ if (isset($_POST["ViewID"])) {
     $g_view_id = $_POST["ViewID"];
 }
 ?>
-
+ <!-- html file-->
 <!DOCTYPE html>
 <html lang="en">
     <head>
