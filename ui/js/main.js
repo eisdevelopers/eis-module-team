@@ -71,7 +71,7 @@ function EisUIClass() {
             if (members[i].img_url == undefined) {
                 html += "<img class='img-circle' src= '" + "img/default.png" + "'>";
             } else {
-                html += "<img class='img-circle' src= '" + members[i].img_url + "'>";
+                html += "<img class='img-circle' src= './../" + members[i].img_url + "'>";
             }
             html += "</td>";
             html += "<td><input type=text  readonly value= '" + members[i].name + "'></td>";

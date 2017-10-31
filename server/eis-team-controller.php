@@ -198,7 +198,7 @@
               }
 
               /* Allow files less than 1 MB Size */
-              if ( $imgSize > ( 2 * 1024 * 1024) ) {
+              if ( $imgSize > ( 1 * 1024 * 1024) ) {
                   $allow_upload = false;
               }
 
@@ -207,7 +207,7 @@
                   if ( $ret == false ) {
                       return null;
                   } else {
-                      return $target_file;
+                      return "media/img/". $target_file_name;
                   }
               }
           }
@@ -259,11 +259,10 @@
 
                   $MsgObj->msg_data = $_GET;
 
-                  //$MsgObj->msg_id = $_GET["msg_id"];
-
-                  $members = $ctrl->Dispatcher($MsgObj);
-                  $json_obj = json_encode($members);
-                  //var_dump($json_obj);
+                  $result = $ctrl->Dispatcher($MsgObj);
+                  $json_obj = json_encode($result);
+                  
+                  //send response
                   echo $json_obj;
               } catch (Exception $ex) {
                   echo "Error : " . $ex->getMessage();
