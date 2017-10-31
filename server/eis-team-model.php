@@ -40,32 +40,44 @@ if (!class_exists('EisTeamModel')) {
         public function __construct($host, $user, $pwd, $dbname) {
             parent::__construct($host, $user, $pwd, $dbname);
         }
-        
-        
-         /* Function: GetAllMembers
+
+        /* @method GetAllMembers
          * Description: View members that is in the database
-         * Return:
-         * On success return 0, else error code
+         * 
+         * @return On success return 0, else error code
+         * 
          */
+
         public function GetAllMembers() {
             $query = 'SELECT * from `' . $this->m_table_name . '`';
             $result = $this->ExecuteSelectQuery($query);
             return $result;
         }
 
+        /*
+         * ExecuteCUDQuery: Operates on CREATE,UPDATE,DELETE query
+         * params: 
+         *    1. $query (String) - Sql SELECT statement
+         * returns:
+         * 
+         *   On success runs
+         *   On error it returns 'null'
+         */
+
         public function ExecuteCUDQuery($query) {
             return $this->m_link->query($query);
         }
-        
-           /*
-           * ExecuteSelectQuery operates on SELECT query
-           * params: 
-           *    1. $query (String) - Sql SELECT statement
-    
-           * returns:
-           *   On success returns associative data array. Caller must check size of array for validation.
-           *   On error it returns 'null'
-           */
+
+        /*
+         * ExecuteSelectQuery: Operates on SELECT query
+         * params: 
+         *    1. $query (String) - Sql SELECT statement
+         * Returns:
+         * 
+         *   On success returns associative data array. Caller must check size of array for validation.
+         *   On error it returns 'null'
+         */
+
         public function ExecuteSelectQuery($query) {
             $result = $this->m_link->query($query);
             $dataArray = array();  //Creat Assocative array
@@ -77,34 +89,45 @@ if (!class_exists('EisTeamModel')) {
             }
             return $dataArray;
         }
-        
+
         protected function GetDbLink() {
             
         }
-          public function GetErrorMsg() {
-              return $this->m_link->error;
-          }
 
-          public function GetErrorNum() {
-              return $this->m_link->errno;
-          }
+        /* Function: GetErrorMsg
+         * Description: Returns the  error message for the MySQLi function call that can succeed or fail
+         */
+
+        public function GetErrorMsg() {
+            return $this->m_link->error;
+        }
+
+        /* Function: GetErrorNum
+         * Description: Returns the  error code for the MySQLi function call that can succeed or fail.
+         */
+
+        public function GetErrorNum() {
+            return $this->m_link->errno;
+        }
+
         /* Function: CreateMember
          * Description: Creates Member
          * Params:
          * 1 - name
          * 2 - designation 
-         * 3 - img
+         * 3 - img 
          * Return:
+         * 
          * On success return 0, else error code
          */
 
         public function CreateMember($name, $designation, $img_url, $style_line, $status) {
             $ret = false;
-              $query = "INSERT INTO `" . $this->m_table_name ."` values(null, '$name','$designation','$img_url','$style_line', '$status') ";
-            $this->ExecuteCUDQuery($query);           
+            $query = "INSERT INTO `" . $this->m_table_name . "` values(null, '$name','$designation','$img_url','$style_line', '$status') ";
+            $this->ExecuteCUDQuery($query);
             return $this->GetErrorNum();
         }
-        
+
         /*
          * Function: UpdateMember
          * Description: This function updates Member details in the database with provided details having given id
@@ -113,19 +136,21 @@ if (!class_exists('EisTeamModel')) {
          * 2 - designation
          * 3 - img
          * Return:
+         * 
          * On success return 0, else error code
          */
 
-        public function UpdateMember($id,$name,$designation,$img) {
-             $query = "update`" . $this->m_table_name ."`  set name='$name',designation='$designation',img_url='$img' where id='$id'";
+        public function UpdateMember($id, $name, $designation, $img) {
+            $query = "update`" . $this->m_table_name . "`  set name='$name',designation='$designation',img_url='$img' where id='$id'";
             $this->ExecuteCUDQuery($query);
             return $this->GetErrorNum();
         }
-        
+
         /*
          * Function: DeleteMember
          * Description: This function Deletes Member using given ID
          * Return:
+         * 
          * On success return 0, else error code
          */
 
@@ -135,38 +160,43 @@ if (!class_exists('EisTeamModel')) {
             return $this->GetErrorNum();
         }
 
-       public function SearchMember($search) {
-            $query = "SELECT * FROM `$this->m_table_name` WHERE name like '%".$name."%' OR designation like '%".$designation."%'";
+        public function SearchMember($search) {
+            $query = "SELECT * FROM `$this->m_table_name` WHERE name like '%" . $name . "%' OR designation like '%" . $designation . "%'";
             $data = $this->ExecuteSelectQuery($query);
             return $this->GetErrorNum();
         }
-        
-       /* function SetMemberStatus
+
+        /* Function: SetMemberStatus
          * Description: This function sets the status of a member using given ID
+         * 
          * returns:
          * On success returns associative array, else null
-         */ 
-        public function SetMemberStatus($id){
-            $query ="update`" . $this->m_table_name ."` set status=1-status where id='$id'";
+         */
+
+        public function SetMemberStatus($id) {
+            $query = "update`" . $this->m_table_name . "` set status=status where id='$id'";
             $this->ExecuteCUDQuery($query);
             return $this->GetErrorNum();
         }
-        
-        /*
+
+        /*  Function: GetMemberData
+         *  Description: This function fetches the  fields of a member using given ID
          * 
          * returns:
-         *      On success returns associative array, else null
+         *  On success returns associative array, else null
          */
+
         public function GetMemberData($id) {
             $query = "SELECT * FROM `$this->m_table_name` where id = $id";
             $result = $this->ExecuteSelectQuery($query);
-            
-            if($result){
+
+            if ($result) {
                 return $result;
             }
-            
+
             return null;
-           
         }
+
     }
+
 }
