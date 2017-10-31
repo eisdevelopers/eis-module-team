@@ -38,6 +38,7 @@ if (isset($_POST["ViewID"])) {
          <script src="deps/jquery/jquery-3.1.1.js" type="text/javascript"></script>
         <script src="deps/bootstrap4.0/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/main.js" type="text/javascript"></script>
+        <script src="js/admin-js.js" type="text/javascript"></script>
         <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
             <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -134,16 +135,16 @@ if (isset($_POST["ViewID"])) {
                         <?php
                         switch ($g_view_id) {
                             case 1:
-                                require_once './partials/admin-view.php';
+                                require_once './partials/list-members-view.php';
                                 break;
                             case 2:
                                 require_once './partials/create-member-view.php';
                                 break;
                             case 3:
-                                require_once './partials/admin-view.php';
+                                require_once './partials/list-members-view.php';
                               break;
                             case 4:
-                                require_once './partials/admin-view.php';
+                                require_once './partials/list-members-view.php';
                             default :
                         }
                         ?>

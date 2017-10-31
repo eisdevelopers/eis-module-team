@@ -117,13 +117,14 @@ html{
 }
 .team-wrapper{
     box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.2);
+    padding: 15px;
 }
 .team-des {
     cursor: pointer;
     position: relative;
     bottom: 0;
     transition: all 0.4s linear;
-    padding: 62px 22px 62px 22px;
+    padding: 40px 22px;
     background-color: transparent;;
 }
 
@@ -242,11 +243,11 @@ h1{
 }
 
 .eis-team-profile{
-    width: 25%;
+    width: 33%;
     position: relative;
     display: inline-block;
     float: left;
-    background-color: darkgray; 
+    /*background-color: darkgray;*/ 
     height: 600px; 
     color: #8a0b0b;
 
