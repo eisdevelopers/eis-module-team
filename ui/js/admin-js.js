@@ -20,8 +20,7 @@ $(document).ready(function () {
     /* EisUIClass is defined in main.js */
     var objUI = new EisUIClass();
     
-    objUI.ShowAdminPage();
-    objUI.ProcessMembers();
+    objUI.ProcessMembers('content');
     
 });
 

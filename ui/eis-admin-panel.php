@@ -36,11 +36,7 @@
         <!--
             Include Scripts
         -->
-        <script src="deps/jquery/jquery-3.1.1.js" type="text/javascript"></script>
-        <script src="deps/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
-        <!--<script src="deps/bootstrap4.0/js/bootstrap.min.js" type="text/javascript"></script>-->
-        <script src="js/main.js" type="text/javascript"></script>
-        <script src="js/admin-js.js" type="text/javascript"></script>
+
 
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
@@ -78,7 +74,7 @@
                                 </div>
                                 <div class="eis-menu-label">
                                     <a id="idListMembers" class="nav-link" href="#">&nbsp;  List Members</a>
-                                    <label> Show all Members</label>
+                                    <label> Shows all Members</label>
                                 </div>
                             </div>
                         </li>
@@ -119,19 +115,25 @@
                             </div>
                         </li>
                     </ul>
-                    </nav>
-                    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                        <h1 class="page-header">Dashboard</h1>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h1 class="page-header">Dashboard</h1>
 
 
-                        <div id="content" class="content">
-
-                        </div>
-
+                    <div id="content" class="content">
+                        <!--This section is dynamically update-->
                     </div>
+
                 </div>
             </div>
-
+            <div id="output">
+                
+            </div>
+        </div>
+        <script src="deps/jquery/jquery-3.1.1.js" type="text/javascript"></script>
+        <script src="deps/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/main.js" type="text/javascript"></script>
+        <script src="js/admin-js.js" type="text/javascript"></script>
     </body>
 </html>
 

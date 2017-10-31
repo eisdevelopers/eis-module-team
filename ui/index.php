@@ -8,21 +8,28 @@ History:
 <html>  
     <head>
         <meta charset="UTF-8">
-        <title></title>
-        <link href="./deps/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" type="text/css"/> 
+        <title>Team | EIS </title>
+        
+        <link href="./deps/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="css/main-style.css" rel="stylesheet" type="text/css"/>
+
         <script src="deps/jquery/jquery-3.1.1.js" type="text/javascript"></script>
         <script src="js/main.js" type="text/javascript"></script>
-        <link href="css/main-style.css" rel="stylesheet" type="text/css"/>
-      
     </head>
     <body >
-       
-        <div class="content">
-            <?php
-                  // require_once './partials/create-member-view.php';
-                  require_once './partials/admin-view.php';
-              ?>
+
+        <div id="content" class="content">
+            <!--  Dynamic Content update -->
         </div>
-       
+
+<?php
+  echo "<BR> SERVER-NAME: " . $_SERVER['SERVER_NAME']  . "<BR>";
+  echo "<BR> SERVER-ADDR: " . $_SERVER['SERVER_PROTOCOL']  . "<BR>";
+  echo "<BR> SERVER-SELF: " . $_SERVER['PHP_SELF']  . "<BR>";
+  ?>
+        <script>
+//            ProcessTeamProfileView(content);
+        </script>
+
     </body>
 </html>

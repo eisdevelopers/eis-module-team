@@ -1,4 +1,4 @@
-/*
+/**
  * File : main.js
  * Description: Main JS file for all partial forms related to members of the team
  * Author: Nazoo Akhter
@@ -11,6 +11,8 @@
 /*
  * @config 
  */
+
+var EIS_DEBUG = true;
 var g_server_url = 'http://192.168.43.25/github/team-module/server/eis-team-controller.php';
 g_server_url = 'http://localhost/github-projs/eis-module-team/server/index.php';
 
@@ -62,7 +64,7 @@ function EisUIClass() {
      */
     this.DisplayMemberList = function (members, elementID) {
         var html = "<div class='eis-admin-container' id='displaymember'> <div> ";
-        html += "<table class='table table-striped'><thead><tr><th><strong>Image</strong></th><th><strong>Name</strong></th><th><strong>Designation</th><th><strong>Actions</th></tr>";
+        html += "<table class='table table-striped'><thead><tr><th><strong></strong></th><th><strong>Name</strong></th><th><strong>Designation</th><th><strong>Actions</th></tr>";
         for (var i = 0; i < members.length; i++) {
             html += "<tr><td>";
             var id = members[i].id;
@@ -146,18 +148,17 @@ function EisUIClass() {
      * @function ProcessMembers
      * @description This function sends the ajax request to get all team members from
      *              the server. The response calls DisplayMemberList method to show the results.
-     * @param 
+     * @param {string} elemID - ID of the element used to load html content
      * @returns {undefined}
      */
-    this.ProcessMembers = function () {
+    this.ProcessMembers = function (elemID) {
         $.ajax({
             method: "get",
             url: g_server_url + '?msg_id=1',
             success: function (data) {
-//            alert("Ureka!!!");
                 console.log(data);
                 var obj = new EisUIClass();
-                obj.DisplayMemberList(JSON.parse(data), 'members');
+                obj.DisplayMemberList(JSON.parse(data), elemID);
             },
             error: function (data) {
                 alert("Gadbad ProcessMembers");
@@ -165,7 +166,15 @@ function EisUIClass() {
         });
     };
 
-    this.DisplayMembers = function (members) {
+    /**
+     * Generates necessary HTML view for the team profiles received from
+     * server.
+     * 
+     * @param {type} members - Members JSON object array from server
+     * @param {type} elemID - Element ID to display html content
+     * @returns {undefined}
+     */
+    this.DisplayTeamProfiles = function (members, elemID) {
         var html = "<div class='eis-team-container'>";
         for (var i = 0; i < members.length; i++) {
             html += "<div class='eis-team-profile'> <div class='team-wrapper'>";
@@ -184,15 +193,15 @@ function EisUIClass() {
         }
 
         html += "</div>";
-        document.getElementById('output').innerHTML = html;
+        document.getElementById(elemID).innerHTML = html;
     };
 
     /**
      * Initiates request to fetch member information from server.
-     * On success, generates the profile view using DisplayMembers
+     * On success, generates the profile view using DisplayTeamProfiles
      * @returns {undefined}
      */
-    this.LoadMembers = function () {
+    this.LoadTeamProfiles = function (elemID) {
         $.ajax({
             method: "get",
             url: g_server_url + '?msg_id=1',
@@ -200,7 +209,8 @@ function EisUIClass() {
                 if (EIS_DEBUG) {
                     console.log(data);
                 }
-                DisplayMembers(JSON.parse(data));
+                var obj = new EisUIClass();
+                obj.DisplayTeamProfiles(JSON.parse(data), elemID);
             },
             error: function (data) {
                 alert("Gadbad");
@@ -227,7 +237,7 @@ function EisUIClass() {
                         console.log(data);
                         alert("Member Updated");
                     }
-                    
+
                     location.reload();
                     GetMemberDetails(JSON.parse(data));
                 },
@@ -279,13 +289,46 @@ function EisUIClass() {
         $("#content").load('partials/list-members-view.php');
     }
 
+    this.CreateMember = function (form_data, elementID) {
+
+        $.ajax(
+                {
+                    method: 'POST',
+                    data: form_data,
+                    url: g_server_url,
+                    mimeType: "multipart/form-data",
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (data, status, hdr) {
+//                        alert("Member Created!");
+                        $("#output").html(data);
+                    },
+                    error: function (hdr, status, error) {
+                        alert("Member Create ERROR!");
+                    }
+                });
+    };
+
+}
+
+/**
+ * This function inovkes LoadTeamProfiles method of EisUIClass
+ * and finally loads the entire team profile
+ * 
+ * @param none 
+ */
+function ProcessTeamProfileView() {
+    var objUI = new EisUIClass();
+    objUI.LoadTeamProfiles('content');
 }
 
 $(document).ready(function () {
     var objUI = new EisUIClass();
+
     $("#idListMembers").on('click', function (e) {
         e.preventDefault();
-        $("#content").load('partials/list-members-view.php');
+        objUI.ProcessMembers('content');
 
     });
 
@@ -296,12 +339,12 @@ $(document).ready(function () {
 
     $("#idUpdateMember").on('click', function (e) {
         e.preventDefault();
-        $("#content").load('partials/list-members-view.php');
+        objUI.ProcessMembers('content');
     });
 
     $("#idDelMember").on('click', function (e) {
         e.preventDefault();
-        $("#content").load('partials/list-members-view.php');
+        objUI.ProcessMembers('content');
     });
 
 });
