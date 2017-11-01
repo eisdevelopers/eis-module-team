@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="eis-menu-label">
                                     <a id="idListMembers" class="nav-link" href="#">&nbsp;  List Members</a>
-                                    <label> Shows all Members</label>
+                                    <p><small> Shows all Members</small></p>
                                 </div>
                             </div>
                         </li>
@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="eis-menu-label">
                                     <a id="idAddMember" class="nav-link" href="#">&nbsp;  Add Members</a>
-                                    <label> Add New Members</label>
+                                    <p><small>Add New Members</small></p>
                                 </div>
                             </div>
                         </li>
@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="eis-menu-label">
                                     <a id="idUpdateMember" class="nav-link" href="#">&nbsp; Update Members</a>
-                                    <label> Update Existing Members</label>
+                                    <p><small> Update Existing Members </small></p>
                                 </div>
                             </div>
                         </li>
@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="eis-menu-label">
                                     <a  id="idDelMember" class="nav-link" href="#">&nbsp;  Delete Members</a>
-                                    <label> Delete Existing Members</label>
+                                    <p><small> Delete Existing Members </small></p>
                                 </div>
                             </div>
                         </li>
