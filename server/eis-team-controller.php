@@ -230,9 +230,6 @@
                   $ctrl = new EisTeamController($g_server, $g_user, $g_pwd, $g_db);
                   $MsgObj = new EisMessage();
                   
-                  var_dump($_POST);
-                  var_dump($_FILES);
-
                   $MsgObj->msg_id = $_POST["msg_id"];
                   $MsgObj->msg_data = $_POST;
                   ;
