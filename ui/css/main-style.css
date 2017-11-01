@@ -220,13 +220,14 @@ html{
 }
 .eis-admin-container button{
     padding: 10px 20px;
-    border-radius: 8px;
-    margin: 4px 10px;
-    background: lightblue;
-
+    /* border-radius: 8px; */
+    margin: 4px 5px;
+    background: #34495e;
+    color: #fff;
+    border: none;
 }
 .eis-admin-container button:hover{
-    background: lightyellow;
+    background: rgba(21, 200, 214, 0.77);;
 }
 
 .eis-admin-container input[type='text']{

@@ -64,7 +64,7 @@ function EisUIClass() {
      */
     this.DisplayMemberList = function (members, elementID) {
         var html = "<div class='eis-admin-container' id='displaymember'> <div> ";
-        html += "<table class='table table-striped'><thead><tr><th><strong></strong></th><th><strong>Name</strong></th><th><strong>Designation</th><th><strong>Actions</th></tr>";
+        html += "<table class='table table-striped'>";
         for (var i = 0; i < members.length; i++) {
             html += "<tr><td>";
             var id = members[i].id;
@@ -74,8 +74,8 @@ function EisUIClass() {
                 html += "<img class='img-circle' src= './../" + members[i].img_url + "'>";
             }
             html += "</td>";
-            html += "<td><input type=text  readonly value= '" + members[i].name + "'></td>";
-            html += "<td>" + members[i].designation + "</td>";
+            html += "<td class='text-block'><br><strong>" + members[i].name + "</strong><br>" + members[i].designation + "</td>";
+//            html += "<td>" + members[i].designation + "</td>";
 
             //Check for status
             var status_label = 'Disable';
@@ -83,7 +83,7 @@ function EisUIClass() {
                 status_label = 'Enable';
             }
 
-            html += "<td>"
+            html += "<td><br>"
             html += "<button id='btn_up_" + id + "'>Update</button>";
             html += "<button id='btn_del_" + id + "' value='" + id + "'>Delete</button>";
 
@@ -269,7 +269,6 @@ function EisUIClass() {
                 method: "get",
                 url: g_server_url + '?msg_id=7&mem_id=' + mem_id + "&status=" + status,
                 success: function (data) {
-//            alert("Ureka!!!");
                     console.log(data);
                     alert("Status Updated");
                     location.reload();
