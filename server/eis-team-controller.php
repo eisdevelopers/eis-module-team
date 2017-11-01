@@ -157,7 +157,12 @@
               $ret = $this->m_model_team->SearchMember($name, $designation);
               return $ret;
           }
-
+                  /** @method SetMemberStatus
+                   * 
+                   * @param type $id
+                   * 
+                   * @return on success runs query
+                   */
           public function SetMemberStatus($id) {
               $ret = $this->m_model_team->SetMemberStatus($id);
               return $ret;
