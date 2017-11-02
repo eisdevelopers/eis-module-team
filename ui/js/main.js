@@ -84,7 +84,7 @@ function EisUIClass() {
             }
 
             html += "<td><br>"
-            html += "<button id='btn_up_" + id + "'>Update</button>";
+            html += "<button id='btn_update_" + id + "'>Update</button>";
             html += "<button id='btn_del_" + id + "' value='" + id + "'>Delete</button>";
 
             html += "<button id='btn_status_" + id + "' value=''>" + status_label + "</button>";
@@ -96,6 +96,7 @@ function EisUIClass() {
         html += "</table>";
         html += "</div>";
         html += "</div>";
+        
         document.getElementById(elementID).innerHTML = html;
 
         for (var i = 0; i < members.length; i++) {
@@ -105,12 +106,23 @@ function EisUIClass() {
         }
 
     };
+    
+    /**
+     * Updates member details using member ID
+     * @param {type} formData
+     * @param {type} elemID
+     * @returns {undefined}
+     */
+    this.UpdateMember = function(formData, elemID){
+        
+    };
 
     this.AddUpdateHandler = function (elemId) {
         $("#" + elemId).on('click', function () {
             var mem_id = $("#" + elemId).val();
             $("#update-content").load('partials/update-member-view.php');
-            this.PopulateUpdateForm(mem_id);
+//            var objUIClass = new EisUIClass();
+//            objUIClass.PopulateUpdateForm(mem_id);
         });
     }
 
