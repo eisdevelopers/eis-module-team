@@ -66,6 +66,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
+                    <div class="top-bar-sm" align="center">
+                        <ul >
+                            <li><span class="fa fa-2x fa-group"></span></li>
+                            <li><span class="fa fa-2x  fa-plus"></span></li>
+                            <li><span class="fa fa-2x  fa-pencil"></span></li>
+                            <li><span class="fa fa-2x  fa-times-rectangle"></span></li>
+
+                        </ul>
+                    </div>
+
                     <ul class="nav nav-sidebar">
                         <li class="nav-item">
                             <div class="eis-menu-item" id="eis-top-menuitem"> 
@@ -106,7 +116,7 @@
                         <li class="nav-item">
                             <div class="eis-menu-item"> 
                                 <div class="eis-menu-icon">
-                                    <span class="fa fa-pencil"></span>
+                                    <span class="fa fa-times-rectangle"></span>
                                 </div>
                                 <div class="eis-menu-label">
                                     <a  id="idDelMember" class="nav-link" href="#">&nbsp;  Delete Members</a>
@@ -127,7 +137,7 @@
                 </div>
             </div>
             <div id="output">
-                
+
             </div>
         </div>
         <script src="deps/jquery/jquery-3.1.1.js" type="text/javascript"></script>
