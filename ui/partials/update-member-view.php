@@ -20,27 +20,45 @@
     <div class="eis-subscribe" id="eis-subscribe-screen">
         <h1> Update Member Details  </h1>
         <form id="FORM-ID-UPDATE-MEMBER" action="#" class="form-horizontal" method="POST" enctype="multipart/form-data" >
-            <input type="text" name="mem_id" hidden>
+
             <div class="eis-input-group">
                 <span class="eis-add-on"><span class="glyphicon glyphicon-user"></span></span>
-                <input type="text" class="form-control" name="name" placeholder="Enter Name" required>
+                <input type="text" id="mem_name" class="form-control" name="name" placeholder="Enter Name" required>
             </div>
             <br>
             <div class="eis-input-group">
                 <span class="eis-add-on"><span class="glyphicon glyphicon-pencil"></span></span>
-                <input type="text" class="form-control" name="designation" placeholder="Enter Designation" required>
+                <input type="text" id="mem_designation"  class="form-control" name="designation" placeholder="Enter Designation" required>
             </div>
             <br>
 
             <div class="eis-input-group">
                 <span class="eis-add-on"><span class="glyphicon glyphicon-pencil"></span></span>
-                <input type="file"  class="form-control" id="profile_pic" name="profile_pic" accept ="image/*" required> 
+                <input type="file" class="form-control" id="profile_pic" name="mem_profile_pic" accept ="image/*" required> 
             </div> 
+            <br>
 
+            <div class="eis-input-group">
+                <span class="eis-add-on"><span class="glyphicon glyphicon-filter"></span></span>
+                <div class="radio-group">                    
+                    <p>Status</p>
+                    <label class="radio-control">Enable
+                        <input type="radio" id="mem_status" id="mem_status" name="mem_status" value="1" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio-control">Disable
+                        <input type="radio" id="mem_status" id="mem_status" name="mem_status" value="0">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+            </div>
+
+            <input type="text" name="mem_id" hidden>
             <input type="text" value="2" name="msg_id" hidden="">
 
             <br>
-            <button type="submit" id="btnMemberSubmit" class="btn btn-lg btn-info">Submit</button>
+            <button type="submit" id="btnMemberSubmit" class="btn btn-lg btn-info">Update</button>
         </form>
     </div>
 </div>
@@ -54,6 +72,10 @@
             console.log(form_data);
             objUI.UpdateMember(form_data, 'server-message');
         });
+
+        function FillUpdateForm(dataArray) {
+
+        }
     });
 </script>
 
