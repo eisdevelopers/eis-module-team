@@ -73,9 +73,9 @@
             objUI.UpdateMember(form_data, 'server-message');
         });
 
-        function FillUpdateForm(dataArray) {
-
-        }
+        g_UpdateFormObj.FillForm();
+        
+        
     });
 </script>
 
