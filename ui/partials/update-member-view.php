@@ -31,28 +31,30 @@
                 <input type="text" id="mem_designation"  class="form-control" name="designation" placeholder="Enter Designation" required>
             </div>
             <br>
-
-            <div class="eis-input-group">
-                <span class="eis-add-on"><span class="glyphicon glyphicon-pencil"></span></span>
-                <input type="file" class="form-control" id="profile_pic" name="mem_profile_pic" accept ="image/*" required> 
-            </div> 
-            <br>
+           
 
             <div class="eis-input-group">
                 <span class="eis-add-on"><span class="glyphicon glyphicon-filter"></span></span>
                 <div class="radio-group">                    
                     <p>Status</p>
                     <label class="radio-control">Enable
-                        <input type="radio" id="mem_status" id="mem_status" name="mem_status" value="1" checked="checked">
+                        <input type="radio" id="mem_status_enable" name="mem_status" value="1" >
                         <span class="checkmark"></span>
                     </label>
                     <label class="radio-control">Disable
-                        <input type="radio" id="mem_status" id="mem_status" name="mem_status" value="0">
+                        <input type="radio"  id="mem_status_disable" name="mem_status" value="0">
                         <span class="checkmark"></span>
                     </label>
                 </div>
 
             </div>
+            <br>
+            <div class="eis-input-group">
+                <img src="" id="mem_dp" class="img-circle dp-size">
+                <!--<span class="eis-add-on"><span class="glyphicon glyphicon-pencil"></span></span>-->
+                <input type="file" class="form-control" id="mem_profile_pic" name="mem_profile_pic" accept ="image/*" required> 
+            </div> 
+            
 
             <input type="text" name="mem_id" hidden>
             <input type="text" value="2" name="msg_id" hidden="">

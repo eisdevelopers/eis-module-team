@@ -173,9 +173,13 @@ if (!class_exists('EisTeamModel')) {
          * On success returns associative array, else null
          */
 
-        public function SetMemberStatus($id) {
-            $query = "update`" . $this->m_table_name . "` set status=status where id='$id'";
+        public function SetMemberStatus($id, $value) {
+            
+            $query = "update`" . $this->m_table_name . "` set status=$value where id=$id";
             $this->ExecuteCUDQuery($query);
+            if(EIS_DEBUG){
+                EisLog::Record(__FUNCTION__ . " - SQL :   " . $query);
+            }
             return $this->GetErrorNum();
         }
 

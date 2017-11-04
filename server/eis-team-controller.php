@@ -119,7 +119,8 @@
                   case MSG_MEMBER_STATUS:
                       if ( isset($message->msg_data["mem_id"]) ) {
                           $id = $message->msg_data["mem_id"];
-                          $result = $this->SetMemberStatus($id);
+                          $value = $message->msg_data["status"];
+                          $result = $this->SetMemberStatus($id, $value);
                       } else {
                           $result = "Please provide valid member id";
                       }
@@ -163,8 +164,8 @@
                    * 
                    * @return on success runs query
                    */
-          public function SetMemberStatus($id) {
-              $ret = $this->m_model_team->SetMemberStatus($id);
+          public function SetMemberStatus($id, $value) {
+              $ret = $this->m_model_team->SetMemberStatus($id, $value);
               return $ret;
           }
 

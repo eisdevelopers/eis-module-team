@@ -18,7 +18,7 @@ g_server_url = 'http://localhost/github-projs/eis-module-team/server/index.php';
 
 
 function UpdateFromClass() {
-    this.m_data = {'id': null, 'name': null, 'designation': null, status: null};
+    this.m_data = {'id': null, 'name': null, 'designation': null, status: null, img_url:null};
     this.FillForm = function () {
         if (this.m_data['id'] == null) {
             console.log("No member object data");
@@ -28,6 +28,12 @@ function UpdateFromClass() {
         $("#mem_id").val(this.m_data['id']);
         $("#mem_name").val(this.m_data['name']);
         $("#mem_designation").val(this.m_data['designation']);
+        $("#mem_dp").attr('src',this.m_data['img_url']);
+        if (this.m_data['status'] == 0) {
+            $("#mem_status_disable").attr("checked","checked");
+        }else{
+            $("#mem_status_enable").attr("checked","checked");
+        }
 
     };
 };
@@ -104,7 +110,7 @@ function EisUIClass() {
             html += "<td><br>"
             html += "<button id='btn_update_" + id + "' value='" + id + "'>Update</button>";
             html += "<button id='btn_del_" + id + "' value='" + id + "'>Delete</button>";
-            html += "<button id='btn_status_" + id + "' value=''>" + status_label + "</button>";
+            html += "<button id='btn_status_" + id + "' value='" + id + "'>" + status_label + "</button>";
             html += "</td>";
             html += "</tr>";
 
@@ -145,6 +151,14 @@ function EisUIClass() {
             objUupdateForm.m_data['id'] = mem_id;
             objUupdateForm.m_data['name'] = $("#name_" + mem_id).html();
             objUupdateForm.m_data['designation'] = $("#desig_" + mem_id).html();
+            objUupdateForm.m_data['img_url'] = $("#dp_" + mem_id).attr('src');
+            
+            if( $("#btn_status_" + mem_id).html() == 'Enable'){
+                objUupdateForm.m_data['status'] = 0;
+            }else{
+                objUupdateForm.m_data['status'] = 1;
+            }
+            
             
         });
     };
@@ -294,7 +308,7 @@ function EisUIClass() {
     this.AddStatusHandler = function (elemId) {
         $("#" + elemId).on('click', function () {
             var mem_id = $("#" + elemId).val();
-            var label = $("#" + elemId).val();
+            var label = $("#" + elemId).html();
             var status = 0;
 
             if (label === "Enable") {

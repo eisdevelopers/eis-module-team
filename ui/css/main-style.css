@@ -401,3 +401,9 @@ h1{
     color: #fff;
     font-weight: 700;
 }
+
+.dp-size{
+    width: 80px;
+    height: 80px;
+        
+}
