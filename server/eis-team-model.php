@@ -1,3 +1,5 @@
+
+
 <?php
 
 /*
@@ -85,11 +87,9 @@ if (!class_exists('EisTeamModel')) {
                 //output data of each row
                 while ($row = $result->fetch_assoc()) {
                     array_push($dataArray, $row);
-                 
-    
                 }
             }
-           return $dataArray;
+            return $dataArray;
         }
 
         protected function GetDbLink() {
@@ -175,9 +175,13 @@ if (!class_exists('EisTeamModel')) {
          * On success returns associative array, else null
          */
 
-        public function SetMemberStatus($id) {
-            $query = "update`" . $this->m_table_name . "` set status=status where id='$id'";
+        public function SetMemberStatus($id, $value) {
+            
+            $query = "update`" . $this->m_table_name . "` set status=$value where id=$id";
             $this->ExecuteCUDQuery($query);
+            if(EIS_DEBUG){
+                EisLog::Record(__FUNCTION__ . " - SQL :   " . $query);
+            }
             return $this->GetErrorNum();
         }
 
@@ -200,5 +204,6 @@ if (!class_exists('EisTeamModel')) {
         }
 
     }
+
 
 }

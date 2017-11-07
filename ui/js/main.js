@@ -17,6 +17,30 @@ var g_server_url = 'http://192.168.43.25/github/team-module/server/eis-team-cont
 g_server_url = 'http://localhost/github-projs/eis-module-team/server/index.php';
 
 
+function UpdateFromClass() {
+    this.m_data = {'id': null, 'name': null, 'designation': null, status: null, img_url:null};
+    this.FillForm = function () {
+        if (this.m_data['id'] == null) {
+            console.log("No member object data");
+            return;
+        }
+
+        $("#mem_id").val(this.m_data['id']);
+        $("#mem_name").val(this.m_data['name']);
+        $("#mem_designation").val(this.m_data['designation']);
+        $("#mem_dp").attr('src',this.m_data['img_url']);
+        if (this.m_data['status'] == 0) {
+            $("#mem_status_disable").attr("checked","checked");
+        }else{
+            $("#mem_status_enable").attr("checked","checked");
+        }
+
+    };
+};
+
+var g_UpdateFormObj = new UpdateFromClass();
+
+
 /*
  * @class This class provides UI Thread functionality which includes
  * 1 - Display List of Users in table format
@@ -69,12 +93,12 @@ function EisUIClass() {
             html += "<tr><td>";
             var id = members[i].id;
             if (members[i].img_url == undefined) {
-                html += "<img class='img-circle' src= '" + "img/default.png" + "'>";
+                html += "<img id='dp_" + id + "' class='img-circle' src= '" + "img/default.png" + "'>";
             } else {
-                html += "<img class='img-circle' src= './../" + members[i].img_url + "'>";
+                html += "<img id='dp_" + id + "' class='img-circle' src= './../" + members[i].img_url + "'>";
             }
             html += "</td>";
-            html += "<td class='text-block'><br><strong>" + members[i].name + "</strong><br>" + members[i].designation + "</td>";
+            html += "<td class='text-block'><br><strong id='name_" + id + "'>" + members[i].name + "</strong><br><p id='desig_" + id + "'>" + members[i].designation + "</p></td>";
 //            html += "<td>" + members[i].designation + "</td>";
 
             //Check for status
@@ -84,10 +108,9 @@ function EisUIClass() {
             }
 
             html += "<td><br>"
-            html += "<button id='btn_update_" + id + "'>Update</button>";
+            html += "<button id='btn_update_" + id + "' value='" + id + "'>Update</button>";
             html += "<button id='btn_del_" + id + "' value='" + id + "'>Delete</button>";
-
-            html += "<button id='btn_status_" + id + "' value=''>" + status_label + "</button>";
+            html += "<button id='btn_status_" + id + "' value='" + id + "'>" + status_label + "</button>";
             html += "</td>";
             html += "</tr>";
 
@@ -96,7 +119,7 @@ function EisUIClass() {
         html += "</table>";
         html += "</div>";
         html += "</div>";
-        
+
         document.getElementById(elementID).innerHTML = html;
 
         for (var i = 0; i < members.length; i++) {
@@ -106,25 +129,39 @@ function EisUIClass() {
         }
 
     };
-    
+
     /**
      * Updates member details using member ID
      * @param {type} formData
      * @param {type} elemID
      * @returns {undefined}
      */
-    this.UpdateMember = function(formData, elemID){
-        
+    this.UpdateMember = function (formData, elemID) {
+
     };
 
     this.AddUpdateHandler = function (elemId) {
         $("#" + elemId).on('click', function () {
             var mem_id = $("#" + elemId).val();
             $("#update-content").load('partials/update-member-view.php');
-//            var objUIClass = new EisUIClass();
-//            objUIClass.PopulateUpdateForm(mem_id);
+
+            /* Using global object g_UpdateFormObj */
+            var objUupdateForm = g_UpdateFormObj;
+            
+            objUupdateForm.m_data['id'] = mem_id;
+            objUupdateForm.m_data['name'] = $("#name_" + mem_id).html();
+            objUupdateForm.m_data['designation'] = $("#desig_" + mem_id).html();
+            objUupdateForm.m_data['img_url'] = $("#dp_" + mem_id).attr('src');
+            
+            if( $("#btn_status_" + mem_id).html() == 'Enable'){
+                objUupdateForm.m_data['status'] = 0;
+            }else{
+                objUupdateForm.m_data['status'] = 1;
+            }
+            
+            
         });
-    }
+    };
 
     /**
      * @function  PopulateUpdateForm
@@ -271,7 +308,7 @@ function EisUIClass() {
     this.AddStatusHandler = function (elemId) {
         $("#" + elemId).on('click', function () {
             var mem_id = $("#" + elemId).val();
-            var label = $("#" + elemId).val();
+            var label = $("#" + elemId).html();
             var status = 0;
 
             if (label === "Enable") {
@@ -333,6 +370,8 @@ function ProcessTeamProfileView() {
     var objUI = new EisUIClass();
     objUI.LoadTeamProfiles('content');
 }
+
+
 
 $(document).ready(function () {
     var objUI = new EisUIClass();
