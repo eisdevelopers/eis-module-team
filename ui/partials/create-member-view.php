@@ -15,8 +15,7 @@
    */
 ?>
 
-<div class="container-fluid" align="center">
-
+<div class="container-fluid" align="center" id="create-member-container">
     <div class="eis-subscribe" id="eis-subscribe-screen">
         <h1> Create EIS  Team  </h1>
         <form id="FORM-ID-CREATE-MEMBER" action="#" class="form-horizontal" method="POST" enctype="multipart/form-data" >
@@ -39,7 +38,7 @@
             <input type="text" value="2" name="msg_id" hidden="">
 
             <br>
-            <button type="submit" id="btnMemberSubmit" class="btn btn-lg btn-info">Submit</button>
+            <button type="submit" id="btnCreateMemberSubmit" class="btn btn-lg btn-info">Submit</button>
         </form>
     </div>
 </div>

@@ -60,7 +60,7 @@
             <input type="text" value="2" name="msg_id" hidden="">
 
             <br>
-            <button type="submit" id="btnMemberSubmit" class="btn btn-lg btn-info">Update</button>
+            <button type="submit" id="btnUpdateMemberSubmit" class="btn btn-lg btn-info">Update</button>
         </form>
     </div>
 </div>

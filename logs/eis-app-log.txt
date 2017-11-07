@@ -14,3 +14,35 @@
 
 2017-11-05 00:03:52 | SetMemberStatus - SQL :   update`eis-team` set status=1 where id=2
 
+2017-11-05 00:20:00 | SetMemberStatus - SQL :   update`eis-team` set status=0 where id=2
+
+2017-11-07 23:07:44 | HandleFileUpload File Type  = jpg
+
+2017-11-07 23:07:44 | HandleFileUpload File Type  = jpg
+
+2017-11-07 23:07:44 | HandleFileUpload File Size  = 149954
+
+2017-11-07 23:08:17 | HandleFileUpload File Type  = jpg
+
+2017-11-07 23:08:18 | HandleFileUpload File Type  = jpg
+
+2017-11-07 23:08:18 | HandleFileUpload File Size  = 149954
+
+2017-11-07 23:10:02 | HandleFileUpload File Type  = jpg
+
+2017-11-07 23:10:02 | HandleFileUpload File Type  = jpg
+
+2017-11-07 23:10:02 | HandleFileUpload File Size  = 149954
+
+2017-11-07 23:13:37 | HandleFileUpload File Type  = png
+
+2017-11-07 23:13:37 | HandleFileUpload File Type  = png
+
+2017-11-07 23:13:37 | HandleFileUpload File Size  = 145219
+
+2017-11-07 23:14:43 | HandleFileUpload File Type  = png
+
+2017-11-07 23:14:43 | HandleFileUpload File Type  = png
+
+2017-11-07 23:14:43 | HandleFileUpload File Size  = 172236
+
