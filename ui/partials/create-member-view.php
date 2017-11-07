@@ -33,7 +33,7 @@
 
             <div class="eis-input-group">
                 <span class="eis-add-on"><span class="glyphicon glyphicon-pencil"></span></span>
-                <input type="file"  class="form-control" id="profile_pic" name="profile_pic" accept ="image/*" required> 
+                <input type="file"  class="form-control" id="profile_pic" name="img" accept ="image/*" required> 
             </div> 
 
             <input type="text" value="2" name="msg_id" hidden="">

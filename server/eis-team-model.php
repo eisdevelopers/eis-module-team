@@ -85,9 +85,11 @@ if (!class_exists('EisTeamModel')) {
                 //output data of each row
                 while ($row = $result->fetch_assoc()) {
                     array_push($dataArray, $row);
+                 
+    
                 }
             }
-            return $dataArray;
+           return $dataArray;
         }
 
         protected function GetDbLink() {
