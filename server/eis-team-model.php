@@ -127,6 +127,10 @@ if (!class_exists('EisTeamModel')) {
             $ret = false;
             $query = "INSERT INTO `" . $this->m_table_name . "` values(null, '$name','$designation','$img_url','$style_line', '$status') ";
             $this->ExecuteCUDQuery($query);
+            
+            if(DEBUG){
+                EisLog::Record(__FUNCTION__. " : " . $query);
+            }
             return $this->GetErrorNum();
         }
 

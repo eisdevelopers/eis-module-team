@@ -235,8 +235,10 @@
               try {
                   $ctrl = new EisTeamController($g_server, $g_user, $g_pwd, $g_db);
                   $MsgObj = new EisMessage();
-                  
-                  $MsgObj->msg_id = $_POST["msg_id"];
+                 if ( isset($_POST["msg_id"]) ) {
+                      $MsgObj->msg_id = $_POST["msg_id"];
+                  }
+
                   $MsgObj->msg_data = $_POST;
                   ;
                   //$MsgObj->msg_id = $_GET["msg_id"];

@@ -58,7 +58,7 @@
             
 
             <input type="text" name="mem_id" hidden>
-            <input type="text" value="2" name="msg_id" hidden="">
+            <input type="text" value="4" name="msg_id" hidden="">
 
             <br>
             <button type="submit" id="btnMemberSubmit" class="btn btn-lg btn-info">Update</button>

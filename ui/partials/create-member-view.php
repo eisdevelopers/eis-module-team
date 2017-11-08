@@ -50,9 +50,9 @@
             var objUI = new EisUIClass();
             e.preventDefault();
             var form_data = new FormData(this);
-//            form_data = ($("#FORM-ID-CREATE-MEMBER").serializeArray());
+          form_data = ($("#FORM-ID-CREATE-MEMBER").serializeArray());
 
-//            form_data.push({'profile_pic' : $('#profile_pic')[0].files[0]});
+         form_data.push({'profile_pic' : $('#profile_pic')[0].files[0]});
             console.log(form_data);
             objUI.CreateMember(form_data, 'server-message');
         });
