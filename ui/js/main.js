@@ -25,7 +25,7 @@ function UpdateFromClass() {
             return;
         }
 
-        $("#mem_id").val(this.m_data['id']);
+        $("#mem_id").attr("value",this.m_data['id']);
         $("#mem_name").val(this.m_data['name']);
         $("#mem_designation").val(this.m_data['designation']);
         $("#mem_dp").attr('src', this.m_data['img_url']);
@@ -138,7 +138,24 @@ function EisUIClass() {
      * @returns {undefined}
      */
     this.UpdateMember = function (formData, elemID) {
-
+        $.ajax({
+            method: 'POST',
+            data: formData,
+            url: g_server_url,
+            mimeType: "multipart/form-data",
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                console.log(data);
+                $("#".elemID).html("Member Updated Successfully");
+                location.reload();
+            },
+            error: function (data) {
+                alert("Error : Update Members");
+                $("#".elemID).html("Error : Update Members");
+            }
+        });
     };
 
     this.AddUpdateHandler = function (elemId) {

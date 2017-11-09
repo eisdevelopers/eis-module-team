@@ -143,6 +143,9 @@ if (!class_exists('EisTeamModel')) {
         public function UpdateMember($id, $name, $designation, $img) {
             $query = "update`" . $this->m_table_name . "`  set name='$name',designation='$designation',img_url='$img' where id='$id'";
             $this->ExecuteCUDQuery($query);
+            if(EIS_DEBUG){
+                EisLog::Record(__FUNCTION__ . " | SQL : " . $query);
+            }
             return $this->GetErrorNum();
         }
 
