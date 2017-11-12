@@ -165,12 +165,11 @@ function EisUIClass() {
             contentType: false,
             cache: false,
             processData: false,
-
             success: function (resp_data) {
-                json_array = JSON.parse(resp_data);
+                var json_array = JSON.parse(resp_data);
+                var objUi = new EisUIClass();
                 console.log(json_array);
-                $("#".elemID).html("Member Updated Successfully");
-                location.reload();
+                objUi.SetNoticeContent("Member Updated Successfully",g_elem_output);
             },
 
             error: function (data) {
@@ -322,27 +321,27 @@ function EisUIClass() {
      * 
      * @returns {undefined}
      */
-    this.ProcessUpdateRequest = function (elemId) {
-        $("#" + elemId).on('click', function () {
-            var mem_id = $("#" + elemId).val();
-            $.ajax({
-                method: "get",
-                url: g_server_url + '?msg_id=4&mem_id=' + mem_id,
-                success: function (data) {
-                    if (EIS_DEBUG) {
-                        console.log(data);
-                        alert("Member Updated");
-                    }
-
-                    location.reload();
-                    GetMemberDetails(JSON.parse(data));
-                },
-                error: function (data) {
-                    alert("Gadbad - Updated");
-                }
-            });
-        });
-    };
+//    this.ProcessUpdateRequest = function (elemId) {
+//        $("#" + elemId).on('click', function () {
+//            var mem_id = $("#" + elemId).val();
+//            $.ajax({
+//                method: "get",
+//                url: g_server_url + '?msg_id=4&mem_id=' + mem_id,
+//                success: function (data) {
+//                    if (EIS_DEBUG) {
+//                        console.log(data);
+//                        alert("Member Updated");
+//                    }
+//
+//                    location.reload();
+//                    GetMemberDetails(JSON.parse(data));
+//                },
+//                error: function (data) {
+//                    alert("Gadbad - Updated");
+//                }
+//            });
+//        });
+//    };
 
     /**
      * Handles the status update for the member.

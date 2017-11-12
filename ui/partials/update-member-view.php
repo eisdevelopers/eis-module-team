@@ -77,7 +77,7 @@
             var form_data = new FormData(this);
             console.log("Form Data");
             console.log(form_data);
-            objUI.UpdateMember(form_data, 'server-message');
+            objUI.UpdateMember(form_data, g_elem_output);
         });
 
         
