@@ -15,6 +15,7 @@
    */
 ?>
 
+<div id="eis-partial-view">
 <div class="container-fluid" align="center" id="create-member-container">
     <div class="eis-subscribe" id="eis-subscribe-screen">
         <h1> Create EIS  Team  </h1>
@@ -42,10 +43,12 @@
         </form>
     </div>
 </div>
+</div>
 
 <script>
     $(document).ready(function () {
         $("#FORM-ID-CREATE-MEMBER").submit(function (e) {
+            $("#eis-partial-view").hide();
             var objUI = new EisUIClass();
             e.preventDefault();
             var form_data = new FormData(this);
@@ -53,7 +56,7 @@
 
 //            form_data.push({'profile_pic' : $('#profile_pic')[0].files[0]});
             console.log(form_data);
-            objUI.CreateMember(form_data, 'server-message');
+            objUI.CreateMember(form_data, 'output');
         });
     });
 </script>

@@ -12,9 +12,13 @@
  * @config 
  */
 
+var g_notice_time = 5 * 1000;  //Seconds
+var g_elem_output = "output";
+
 var EIS_DEBUG = true;
 var g_server_url = 'http://192.168.43.25/github/team-module/server/eis-team-controller.php';
 g_server_url = 'http://localhost/github-projs/eis-module-team/server/index.php';
+
 
 
 function UpdateFromClass() {
@@ -25,7 +29,7 @@ function UpdateFromClass() {
             return;
         }
 
-        $("#mem_id").attr("value",this.m_data['id']);
+        $("#mem_id").attr("value", this.m_data['id']);
         $("#mem_name").val(this.m_data['name']);
         $("#mem_designation").val(this.m_data['designation']);
         $("#mem_dp").attr('src', this.m_data['img_url']);
@@ -56,6 +60,20 @@ function EisUIClass() {
 
     };
 
+    this.SetNoticeContent = function (msg, elemID) {
+        $("#" + elemID).show().html(msg);
+        //Sets focus on the element with message
+        $('#' + g_elem_output).focus();
+
+        //Set fadeout effect
+        $("#" + elemID)
+                .fadeOut(g_notice_time, function () {
+                    location.reload();
+                });
+
+
+    };
+
     /**
      * Attaches on Click Button Handler to the given element id
      * @function
@@ -67,10 +85,11 @@ function EisUIClass() {
             $.ajax({
                 method: "get",
                 url: g_server_url + '?msg_id=3&mem_id=' + mem_id,
-                success: function (data) {
-                    console.log(data);
-                    alert("Response for delete request")
 
+                success: function (resp_data) {
+                    var json_array = JSON.parse(resp_data);
+                    console.log(json_array);
+                    alert("Response for delete request");
                 },
                 error: function (data) {
                     alert("Gadbad - delete");
@@ -146,11 +165,14 @@ function EisUIClass() {
             contentType: false,
             cache: false,
             processData: false,
-            success: function (data) {
-                console.log(data);
+
+            success: function (resp_data) {
+                json_array = JSON.parse(resp_data);
+                console.log(json_array);
                 $("#".elemID).html("Member Updated Successfully");
                 location.reload();
             },
+
             error: function (data) {
                 alert("Error : Update Members");
                 $("#".elemID).html("Error : Update Members");
@@ -197,12 +219,16 @@ function EisUIClass() {
             $.ajax({
                 method: "get",
                 url: g_server_url + '?msg_id=5&mem_id=' + mem_id,
-                success: function (data) {
-                    console.log(data);
-                    alert("Member Deleted");
-                    location.reload();
-//                DisplayMemberList(JSON.parse(data));
+                success: function (resp_data) {
+                    var json_array = JSON.parse(resp_data);
+                    var obj = new EisUIClass();
+
+                    console.log(json_array);
+                    obj.SetNoticeContent('Member Deleted Successfully.', g_elem_output);
+
+
                 },
+
                 error: function (data) {
                     alert("Gadbad - delete");
                 }
@@ -222,13 +248,14 @@ function EisUIClass() {
         $.ajax({
             method: "get",
             url: g_server_url + '?msg_id=1',
-            success: function (data) {
-                console.log(data);
+            success: function (resp_data) {
+                console.log(resp_data['data']);
                 var obj = new EisUIClass();
-                obj.DisplayMemberList(JSON.parse(data), elemID);
+                var json_array = JSON.parse(resp_data);
+                obj.DisplayMemberList(json_array['data'], elemID);
             },
             error: function (data) {
-                alert("Gadbad ProcessMembers");
+                alert("Erro:  ProcessMembers");
             }
         });
     };
@@ -272,10 +299,12 @@ function EisUIClass() {
         $.ajax({
             method: "get",
             url: g_server_url + '?msg_id=1',
-            success: function (data) {
+            success: function (resp_data) {
+                var json_array = JSON.parse(resp_data);
                 if (EIS_DEBUG) {
                     console.log(data);
                 }
+
                 var obj = new EisUIClass();
                 obj.DisplayTeamProfiles(JSON.parse(data), elemID);
             },
@@ -355,7 +384,7 @@ function EisUIClass() {
         $("#content").load('partials/list-members-view.php');
     }
 
-    this.CreateMember = function (form_data, elementID) {
+    this.CreateMember = function (form_data, elemId) {
 
         $.ajax(
                 {
@@ -366,13 +395,13 @@ function EisUIClass() {
                     contentType: false,
                     cache: false,
                     processData: false,
-                    success: function (data, status, hdr) {
-//                        alert("Member Created!");
-                        if ($("#create-member-container")) {
-                            $("#create-member-container").hide();
-                            location.reload();
-                        }
-                        $("#output").html(data);
+                    success: function (resp_data, status, hdr) {
+                        var json_array = JSON.parse(resp_data);
+                        var obj = new EisUIClass();
+
+                        console.log(json_array);
+                        obj.SetNoticeContent('Member Created Successfully.', elemId);
+
                     },
                     error: function (hdr, status, error) {
                         alert("Member Create ERROR!");
@@ -397,6 +426,8 @@ function ProcessTeamProfileView() {
 
 $(document).ready(function () {
     var objUI = new EisUIClass();
+
+    $("#" + g_elem_output).hide();
 
     $("#idListMembers").on('click', function (e) {
         e.preventDefault();

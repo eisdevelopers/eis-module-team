@@ -130,15 +130,15 @@
                     <h1 class="page-header">Dashboard</h1>
 
                     <div id="update-content"></div>
+                    <div id="output"> </div>
                     <div id="content" class="content">
                         <!--This section is dynamically update-->
                     </div>
 
+
                 </div>
             </div>
-            <div id="output">
 
-            </div>
         </div>
         <script src="deps/jquery/jquery-3.1.1.js" type="text/javascript"></script>
         <script src="deps/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
