@@ -14,7 +14,7 @@
    * Author
    */
 ?>
-
+<div id="eis-partial-view">
 <div class="container-fluid" align="center">
 
     <div class="eis-subscribe" id="eis-subscribe-screen">
@@ -62,8 +62,8 @@
             <br>
             <button type="submit" id="btnUpdateMemberSubmit" class="btn btn-lg btn-info">Update</button>
         </form>
-        <div id="server-message"></div>
     </div>
+</div>
 </div>
 
 <script>
@@ -75,6 +75,8 @@
             var objUI = new EisUIClass();
             e.preventDefault();
             var form_data = new FormData(this);
+            
+            $("#eis-partial-view").hide();
             console.log("Form Data");
             console.log(form_data);
             objUI.UpdateMember(form_data, g_elem_output);
