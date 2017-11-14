@@ -1,3 +1,5 @@
+
+
 <?php
 
 /*
@@ -125,9 +127,11 @@ if (!class_exists('EisTeamModel')) {
             $ret = false;
             $query = "INSERT INTO `" . $this->m_table_name . "` values(null, '$name','$designation','$img_url','$style_line', '$status') ";
             $this->ExecuteCUDQuery($query);
+
             if(EIS_DEBUG){
                 EisLog::Record(__FUNCTION__ . " | SQL : " . $query);
             }
+          
             return $this->GetErrorNum();
         }
 
@@ -208,5 +212,6 @@ if (!class_exists('EisTeamModel')) {
         }
 
     }
+
 
 }
