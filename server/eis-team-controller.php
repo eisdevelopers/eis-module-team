@@ -261,26 +261,6 @@
       switch ($method) {
           //Handle Post Request
           case "POST":
-              global $g_server, $g_pwd, $g_user, $g_db;
-
-              try {
-                  $ctrl = new EisTeamController($g_server, $g_user, $g_pwd, $g_db);
-                  $MsgObj = new EisMessage();
-                 if ( isset($_POST["msg_id"]) ) {
-                      $MsgObj->msg_id = $_POST["msg_id"];
-                  }
-
-                  $MsgObj->msg_data = $_POST;
-                  ;
-                  //$MsgObj->msg_id = $_GET["msg_id"];
-
-                  $result = $ctrl->Dispatcher($MsgObj);
-                  $json_obj = json_encode($result);
-                  echo $json_obj;
-              } catch (Exception $ex) {
-                  echo "Error : " . $ex->getMessage();
-              }
-
               $MsgObj->msg_id = $_POST["msg_id"];
               $MsgObj->msg_data = $_POST;          
               break;
