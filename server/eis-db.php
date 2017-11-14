@@ -45,15 +45,16 @@ if (!class_exists('EisSqlDb')) {
             }
         }
 
+      
         /*
-         * CreateDb function creates the DATABASE if it does not exist.
-         * params: 
-         * 1 - db_name (String) - Name of the database to be created
+         * 
+         * @function CreateDb
+         * Description: CreateDb function creates the DATABASE if it does not exist.
+         * @params: string $db_name
          *
-         * return:
-         *  On success 0, else error code.
+         * @returns On success 0, else error code.
+         * 
          */
-
         public function CreateDb($db_name) {
             $query = "CREATE DATABASE IF NOT EXISTS $db_name";
             if (!$this->IsDbConnReady()) {
