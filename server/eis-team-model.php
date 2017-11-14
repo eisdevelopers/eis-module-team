@@ -39,15 +39,23 @@ if (!class_exists('EisTeamModel')) {
 
         private $m_table_name = 'eis-team';
 
+        /*
+         * @method Constructor establishes db connection using thegiven parameters: 
+         * 
+         * @param string $host,string $user,string $pwd and string $database
+         * 
+         * @author
+         */
         public function __construct($host, $user, $pwd, $dbname) {
             parent::__construct($host, $user, $pwd, $dbname);
         }
 
-        /* @method GetAllMembers
+        /* 
+         * @method GetAllMembers
          * Description: View members that is in the database
          * 
-         * @return On success return 0, else error code
-         * 
+         * @returns On success return 0, else error code
+         * @author
          */
 
         public function GetAllMembers() {
@@ -57,13 +65,12 @@ if (!class_exists('EisTeamModel')) {
         }
 
         /*
-         * ExecuteCUDQuery: Operates on CREATE,UPDATE,DELETE query
-         * params: 
-         *    1. $query (String) - Sql SELECT statement
-         * returns:
+         * @function  ExecuteCUDQuery:
+         * Description ExecuteCUDQuery: Operates on CREATE,UPDATE,DELETE query
+         * @params: $query (String) - Sql SELECT statement
          * 
-         *   On success runs
-         *   On error it returns 'null'
+         * @returns On success runs elsenull'
+         * @author 
          */
 
         public function ExecuteCUDQuery($query) {
@@ -71,13 +78,13 @@ if (!class_exists('EisTeamModel')) {
         }
 
         /*
-         * ExecuteSelectQuery: Operates on SELECT query
-         * params: 
-         *    1. $query (String) - Sql SELECT statement
-         * Returns:
-         * 
-         *   On success returns associative data array. Caller must check size of array for validation.
-         *   On error it returns 'null'
+         * @function ExecuteSelectQuery:
+         * Description ExecuteSelectQuery: Operates on SELECT query
+         * @params:  $query (String) - Sql SELECT statement
+         *    
+         * @returns:On success returns associative data array. Caller must check size of array for validation.
+         *             On error it returns 'null'
+         * @author
          */
 
         public function ExecuteSelectQuery($query) {
@@ -96,7 +103,8 @@ if (!class_exists('EisTeamModel')) {
             
         }
 
-        /* Function: GetErrorMsg
+        /*
+         *  @Function GetErrorMsg
          * Description: Returns the  error message for the MySQLi function call that can succeed or fail
          */
 
@@ -104,7 +112,8 @@ if (!class_exists('EisTeamModel')) {
             return $this->m_link->error;
         }
 
-        /* Function: GetErrorNum
+        /*
+         *  @Function GetErrorNum
          * Description: Returns the  error code for the MySQLi function call that can succeed or fail.
          */
 
@@ -112,15 +121,13 @@ if (!class_exists('EisTeamModel')) {
             return $this->m_link->errno;
         }
 
-        /* Function: CreateMember
+        /* 
+         * @function CreateMember
          * Description: Creates Member
-         * Params:
-         * 1 - name
-         * 2 - designation 
-         * 3 - img 
-         * Return:
-         * 
-         * On success return 0, else error code
+         * @params: varchar name, varchar designation & varchar img
+         *
+         * @return On success return 0, else error number
+         * @author
          */
 
         public function CreateMember($name, $designation, $img_url, $style_line, $status) {
@@ -128,40 +135,39 @@ if (!class_exists('EisTeamModel')) {
             $query = "INSERT INTO `" . $this->m_table_name . "` values(null, '$name','$designation','$img_url','$style_line', '$status') ";
             $this->ExecuteCUDQuery($query);
 
-            if(EIS_DEBUG){
+            if (EIS_DEBUG) {
                 EisLog::Record(__FUNCTION__ . " | SQL : " . $query);
             }
-          
+
             return $this->GetErrorNum();
         }
 
         /*
-         * Function: UpdateMember
+         * @function UpdateMember
          * Description: This function updates Member details in the database with provided details having given id
-         * Param
-         * 1 - name
-         * 2 - designation
-         * 3 - img
-         * Return:
+         * @params: varchar name, varchar designation & varchar img
          * 
-         * On success return 0, else error code
+         * @return: On success return 0, else error number
+         * 
+         * @author
          */
 
         public function UpdateMember($id, $name, $designation, $img) {
             $query = "update`" . $this->m_table_name . "`  set name='$name',designation='$designation',img_url='$img' where id='$id'";
             $this->ExecuteCUDQuery($query);
-            if(EIS_DEBUG){
+            if (EIS_DEBUG) {
                 EisLog::Record(__FUNCTION__ . " | SQL : " . $query);
             }
             return $this->GetErrorNum();
         }
 
         /*
-         * Function: DeleteMember
-         * Description: This function Deletes Member using given ID
-         * Return:
+         * @function DeleteMember
+         * Description: This function updates Member details in the database with provided details having given id
          * 
-         * On success return 0, else error code
+         * @return:On success return 0, else error number
+         * @author
+         * 
          */
 
         public function DeleteMember($id) {
@@ -176,28 +182,32 @@ if (!class_exists('EisTeamModel')) {
             return $this->GetErrorNum();
         }
 
-        /* Function: SetMemberStatus
+        /*
+         *  @function: SetMemberStatus
          * Description: This function sets the status of a member using given ID
+         * @params int id, int value
+         * @returns:On success return 0, else error number
+         * @author
          * 
-         * returns:
-         * On success returns associative array, else null
          */
 
         public function SetMemberStatus($id, $value) {
-            
+
             $query = "update`" . $this->m_table_name . "` set status=$value where id=$id";
             $this->ExecuteCUDQuery($query);
-            if(EIS_DEBUG){
+            if (EIS_DEBUG) {
                 EisLog::Record(__FUNCTION__ . " - SQL :   " . $query);
             }
             return $this->GetErrorNum();
         }
 
-        /*  Function: GetMemberData
+        /* 
+         *  @function: GetMemberData
          *  Description: This function fetches the  fields of a member using given ID
+         *  @param int id
          * 
-         * returns:
-         *  On success returns associative array, else null
+         *  @returns:  On success returns associative array, else null
+         *  @author
          */
 
         public function GetMemberData($id) {
@@ -212,6 +222,5 @@ if (!class_exists('EisTeamModel')) {
         }
 
     }
-
 
 }
