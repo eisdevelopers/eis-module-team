@@ -19,6 +19,10 @@ var EIS_DEBUG = true;
 var g_server_url = 'http://192.168.43.25/github/team-module/server/eis-team-controller.php';
 g_server_url = 'http://localhost/github-projs/eis-module-team/server/index.php';
 
+/**
+ * Updates the form.
+ * @class
+ */
 
 
 function UpdateFromClass() {
@@ -74,9 +78,12 @@ function EisUIClass() {
 
     };
 
+
     /**
-     * Attaches on Click Button Handler to the given element id
-     * @function
+     * 
+     * @function AddBtnHandler
+     * @description  This function sends the ajax request to Add  team members from
+     *              the server.Attaches on Click Button Handler to the given element id. 
      * @param {string} id - Element Id
      */
     this.AddBtnHandler = function (id) {
@@ -85,7 +92,6 @@ function EisUIClass() {
             $.ajax({
                 method: "get",
                 url: g_server_url + '?msg_id=3&mem_id=' + mem_id,
-
                 success: function (resp_data) {
                     var json_array = JSON.parse(resp_data);
                     console.log(json_array);
@@ -151,7 +157,9 @@ function EisUIClass() {
     };
 
     /**
-     * Updates member details using member ID
+     * @function  UpdateMember
+     *  @description This function sends the ajax request to update  team members from
+     *              the server. The response call UpdateMember method to show the results.
      * @param {type} formData
      * @param {type} elemID
      * @returns {undefined}
@@ -169,9 +177,8 @@ function EisUIClass() {
                 var json_array = JSON.parse(resp_data);
                 var objUi = new EisUIClass();
                 console.log(json_array);
-                objUi.SetNoticeContent("Member Updated Successfully",g_elem_output);
+                objUi.SetNoticeContent("Member Updated Successfully", g_elem_output);
             },
-
             error: function (data) {
                 alert("Error : Update Members");
                 $("#".elemID).html("Error : Update Members");
@@ -179,6 +186,12 @@ function EisUIClass() {
         });
     };
 
+    /**
+     * @function  AddUpdateHandler
+     * @description This function  updates form
+     * @param {string} elementID - Html element ID to which table is attached
+     * @returns {undefined}
+     */
     this.AddUpdateHandler = function (elemId) {
         $("#" + elemId).on('click', function () {
             var mem_id = $("#" + elemId).val();
@@ -212,6 +225,13 @@ function EisUIClass() {
         $("#update_name").val('Bilal Wani');
     };
 
+    /**
+     * @function  AddDeleteHandler
+     * @description This function sends the ajax request delete member from
+     *              the server. The response calls AddDeleteHandler method to delete the member.
+     *  @param {string} elemID - ID of the element want to delete element
+     */
+
     this.AddDeleteHandler = function (elemId) {
         $("#" + elemId).on('click', function () {
             var mem_id = $("#" + elemId).val();
@@ -227,7 +247,6 @@ function EisUIClass() {
 
 
                 },
-
                 error: function (data) {
                     alert("Gadbad - delete");
                 }
@@ -290,8 +309,9 @@ function EisUIClass() {
     };
 
     /**
-     * Initiates request to fetch member information from server.
-     * On success, generates the profile view using DisplayTeamProfiles
+     * @function LoadTeamProfiles
+     * @description Initiates request to fetch member information from server.
+     *                   On success, generates the profile view using DisplayTeamProfiles
      * @returns {undefined}
      */
     this.LoadTeamProfiles = function (elemID) {
@@ -411,7 +431,8 @@ function EisUIClass() {
 }
 
 /**
- * This function inovkes LoadTeamProfiles method of EisUIClass
+ * @function ProcessTeamView
+ * @description text This function inovkes LoadTeamProfiles method of EisUIClass
  * and finally loads the entire team profile
  * 
  * @param none 
@@ -427,13 +448,13 @@ $(document).ready(function () {
     var objUI = new EisUIClass();
 
     $("#" + g_elem_output).hide();
-
+    /* menu to list member view*/
     $("#idListMembers").on('click', function (e) {
         e.preventDefault();
         objUI.ProcessMembers('content');
 
     });
-
+    /* menu to load create member view*/
     $("#idAddMember").on('click', function (e) {
         e.preventDefault();
         $("#content").load('partials/create-member-view.php');
