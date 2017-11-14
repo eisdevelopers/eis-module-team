@@ -45,7 +45,6 @@ if (!class_exists('EisSqlDb')) {
             }
         }
 
-      
         /*
          * 
          * @function CreateDb
@@ -55,6 +54,7 @@ if (!class_exists('EisSqlDb')) {
          * @returns On success 0, else error code.
          * 
          */
+
         public function CreateDb($db_name) {
             $query = "CREATE DATABASE IF NOT EXISTS $db_name";
             if (!$this->IsDbConnReady()) {
@@ -66,7 +66,7 @@ if (!class_exists('EisSqlDb')) {
         }
 
         /*
-         * Function :  IsDbConnReady
+         * @function :  IsDbConnReady
          * Description:  Checks  the database connection ready or not
          */
 
@@ -75,7 +75,7 @@ if (!class_exists('EisSqlDb')) {
         }
 
         /*
-         * Function : SetDbConnectionError
+         * @function : SetDbConnectionError
          * Description:  It sets the db connection Error
          */
 
