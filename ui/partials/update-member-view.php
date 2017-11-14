@@ -101,7 +101,7 @@
    * Author
    */
 ?>
-
+<div id="eis-partial-view">
 <div class="container-fluid" align="center">
 
     <div class="eis-subscribe" id="eis-subscribe-screen">
@@ -143,26 +143,33 @@
             </div> 
             
 
-            <input type="text" name="mem_id" hidden>
-            <input type="text" value="2" name="msg_id" hidden="">
+            <input type="text" id="mem_id" name="mem_id" value="" hidden>
+            <input type="text" value="4" name="msg_id" hidden="">
 
             <br>
             <button type="submit" id="btnUpdateMemberSubmit" class="btn btn-lg btn-info">Update</button>
         </form>
     </div>
 </div>
+</div>
 
 <script>
     $(document).ready(function () {
+        
+        g_UpdateFormObj.FillForm();
+        
         $("#FORM-ID-UPDATE-MEMBER").submit(function (e) {
             var objUI = new EisUIClass();
             e.preventDefault();
             var form_data = new FormData(this);
+            
+            $("#eis-partial-view").hide();
+            console.log("Form Data");
             console.log(form_data);
-            objUI.UpdateMember(form_data, 'server-message');
+            objUI.UpdateMember(form_data, g_elem_output);
         });
 
-        g_UpdateFormObj.FillForm();
+        
         
         
     });

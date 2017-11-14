@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 2017-10-29 21:57:22 | HandleFileUpload File Type  = 
 
 2017-10-29 21:57:22 | HandleFileUpload File Type  = 
@@ -110,8 +110,6 @@
 
 2017-11-05 00:03:52 | SetMemberStatus - SQL :   update`eis-team` set status=1 where id=2
 
-<<<<<<< HEAD
->>>>>>> 1ab50a929b01a40c92a48de528e6b1968675f622
 2017-11-07 12:57:44 | HandleFileUpload File Type  = 
 
 2017-11-07 12:57:44 | HandleFileUpload File Type  = 
@@ -223,4 +221,95 @@
 
 2017-11-07 23:14:43 | HandleFileUpload File Size  = 172236
 
->>>>>>> 792cc8530bdee0758428c32005e8305b58106696
+2017-11-08 12:41:13 | HandleFileUpload File Type  = png
+
+2017-11-08 12:41:13 | HandleFileUpload File Type  = png
+
+2017-11-08 12:41:13 | HandleFileUpload File Size  = 145219
+
+2017-11-09 12:08:42 | HandleFileUpload File Type  = 
+
+2017-11-09 12:08:43 | HandleFileUpload File Type  = 
+
+2017-11-09 12:08:43 | HandleFileUpload File Size  = 
+
+2017-11-09 12:27:16 | HandleFileUpload File Type  = jpg
+
+2017-11-09 12:27:16 | HandleFileUpload File Type  = jpg
+
+2017-11-09 12:27:16 | HandleFileUpload File Size  = 792930
+
+2017-11-09 12:28:36 | HandleFileUpload File Type  = png
+
+2017-11-09 12:28:36 | HandleFileUpload File Type  = png
+
+2017-11-09 12:28:36 | HandleFileUpload File Size  = 76234
+
+2017-11-09 12:31:05 | HandleFileUpload File Type  = png
+
+2017-11-09 12:31:05 | HandleFileUpload File Type  = png
+
+2017-11-09 12:31:05 | HandleFileUpload File Size  = 76234
+
+2017-11-09 12:31:05 | UpdateMember | SQL : update`eis-team`  set name='Rubeena Kirmani',designation='Web Developer',img_url='media/img/rubeena kirmani.png' where id=''
+
+2017-11-09 12:32:52 | HandleFileUpload File Type  = jpg
+
+2017-11-09 12:32:52 | HandleFileUpload File Type  = jpg
+
+2017-11-09 12:32:52 | HandleFileUpload File Size  = 792930
+
+2017-11-09 12:32:52 | UpdateMember Invoke Update Memeber Model
+
+2017-11-09 12:32:52 | UpdateMember | SQL : update`eis-team`  set name='Rubeena Kirmani',designation='Web Developer',img_url='media/img/rubeena kirmani.jpg' where id=''
+
+2017-11-09 12:47:11 | HandleFileUpload File Type  = jpg
+
+2017-11-09 12:47:11 | HandleFileUpload File Type  = jpg
+
+2017-11-09 12:47:11 | HandleFileUpload File Size  = 792930
+
+2017-11-09 12:47:11 | UpdateMember Invoke Update Memeber Model
+
+2017-11-09 12:47:11 | UpdateMember | SQL : update`eis-team`  set name='Rubeena Kirmani',designation='Web Developer',img_url='media/img/rubeena kirmani.jpg' where id='3'
+
+2017-11-09 12:52:39 | HandleFileUpload File Type  = png
+
+2017-11-09 12:52:39 | HandleFileUpload File Type  = png
+
+2017-11-09 12:52:39 | HandleFileUpload File Size  = 1735544
+
+2017-11-09 12:52:39 | UpdateMember Invoke Update Memeber Model
+
+2017-11-09 12:52:39 | UpdateMember | SQL : update`eis-team`  set name='Rubeena Kir',designation='Web Developer',img_url='' where id='3'
+
+2017-11-09 12:53:58 | HandleFileUpload File Type  = jpg
+
+2017-11-09 12:53:58 | HandleFileUpload File Type  = jpg
+
+2017-11-09 12:53:58 | HandleFileUpload File Size  = 792930
+
+2017-11-09 12:53:58 | UpdateMember Invoke Update Memeber Model
+
+2017-11-09 12:53:58 | UpdateMember | SQL : update`eis-team`  set name='Rubeena Kir',designation='Web Developer',img_url='media/img/rubeena kir.jpg' where id='3'
+
+2017-11-09 13:00:53 | HandleFileUpload File Type  = jpg
+
+2017-11-09 13:00:53 | HandleFileUpload File Type  = jpg
+
+2017-11-09 13:00:53 | HandleFileUpload File Size  = 36734
+
+2017-11-09 13:00:53 | UpdateMember Invoke Update Memeber Model
+
+2017-11-09 13:00:53 | UpdateMember | SQL : update`eis-team`  set name='Rubeena Kirmani',designation='Web Developer',img_url='media/img/rubeena kirmani.jpg' where id='3'
+
+2017-11-09 13:02:09 | HandleFileUpload File Type  = jpg
+
+2017-11-09 13:02:09 | HandleFileUpload File Type  = jpg
+
+2017-11-09 13:02:09 | HandleFileUpload File Size  = 792930
+
+2017-11-09 13:02:09 | UpdateMember Invoke Update Memeber Model
+
+2017-11-09 13:02:09 | UpdateMember | SQL : update`eis-team`  set name='Rubeena',designation='Web Developer',img_url='media/img/rubeena.jpg' where id='3'
+

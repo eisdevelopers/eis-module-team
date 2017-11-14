@@ -36,6 +36,12 @@
 
   }
 
+  class EisResponse {
+
+      public static $res_array = ["msg_id" => null, 'data' => array(), 'errno' => 0, 'err_msg' => null];
+
+  }
+
   if ( !class_exists('EisTeam') ) {
 
       class EisTeamController {
@@ -46,17 +52,22 @@
           public function __construct($host, $user, $pwd, $database) {
               $this->m_model_team = new EisTeamModel($host, $user, $pwd, $database);
           }
-          
-          public function SetError($msg){
+
+          public function SetError($msg) {
               $this->m_error_msg = $msg;
           }
-          public function GetErrorMsg(){
+
+          public function GetErrorMsg() {
               return $this->m_error_msg;
+          }
+          
+          public function GetErrorNum(){
+              return $this->m_model_team->GetErrorNum();
           }
 
           public function Dispatcher($message) {
               $msgid = $message->msg_id;
-              $result = null;
+              $result = -1;
 
 
               switch ($msgid) {
@@ -68,16 +79,20 @@
                       $name = $message->msg_data["name"];
                       $designation = $message->msg_data["designation"];
                       $img_filename = strtolower($name);
-                      
+
                       $img_url = $this->HandleFileUpload($_FILES, "profile_pic", $img_filename);
-                      
-                      if( $img_url == NULL){
+
+                      if ( $img_url == NULL ) {
                           /* This is error in image upload, don't proceed */
                           $this->SetError("Something is wrong with your profile picture. Please check");
                           return $result;
                       }
 
                       $result = $this->m_model_team->CreateMember($name, $designation, $img_url, null, 1);
+
+                      if ( EIS_DEBUG ) {
+                          EisLog::Record(__FUNCTION__ . " | Return : " . $result);
+                      }
                       break;
 
                   case MSG_VIEW_MEMBERS:
@@ -87,14 +102,18 @@
                       break;
 
                   case MSG_UPDATE_MEMBER:
-                      $id = $message["mem_id"];
-                      if ( isset($message["upd"]) ) {
-                          $name = $message["name"];
-                          $designation = $message["name"];
-                          $img = $message["img"];
-                          $result = $this->UpdateMember($id, $name, $designation, $img);
+                      $id = $message->msg_data["mem_id"];
+                      if ( isset($id) ) {
+                          $name = $message->msg_data["name"];
+                          $designation = $message->msg_data["designation"];
+
+                          $img_filename = strtolower($name);
+
+                          $img_url = $this->HandleFileUpload($_FILES, "mem_profile_pic", $img_filename);
+
+                          $result = $this->UpdateMember($id, $name, $designation, $img_url);
                       } else {
-                          echo "<br> Updated Successfully !!!<br>";
+                          echo "Unable to update the member details";
                       }
                       break;
 
@@ -140,6 +159,9 @@
 
           public function CreateMember($name, $designation, $img_url, $style_line, $status) {
               $ret = $this->m_model_team->CreateMember($name, $designation, $img_url, $style_line, $status);
+              if ( EIS_DEBUG ) {
+                  EisLog::Record(__FUNCTION__ . "Ret = " . $ret);
+              }
               return $ret;
           }
 
@@ -149,27 +171,33 @@
           }
 
           public function UpdateMember($id, $name, $designation, $img) {
+              $result = 0;
+              if ( EIS_DEBUG ) {
+                  EisLog::Record(__FUNCTION__ . " Invoke Update Memeber Model");
+              }
               if ( $this->m_model_team ) {
                   $result = $this->m_model_team->UpdateMember($id, $name, $designation, $img);
-              } return $result;
+              }
+              return $result;
           }
 
           public function SearchMember($name, $designation) {
               $ret = $this->m_model_team->SearchMember($name, $designation);
               return $ret;
           }
-                  /** @method SetMemberStatus
-                   * 
-                   * @param type $id
-                   * 
-                   * @return on success runs query
-                   */
+
+          /** @method SetMemberStatus
+           * 
+           * @param type $id
+           * 
+           * @return on success runs query
+           */
           public function SetMemberStatus($id, $value) {
               $ret = $this->m_model_team->SetMemberStatus($id, $value);
               return $ret;
           }
 
-          public function HandleFileUpload($_files, $fileToUpload , $img_name) {
+          public function HandleFileUpload($_files, $fileToUpload, $img_name) {
               /*
                * The file is first stored at $_FILES[$fileToUpload]["tmp_name"]
                */
@@ -180,17 +208,16 @@
 
               $imgFileType = pathinfo($target_file, PATHINFO_EXTENSION);
               $allow_upload = false;
-              
+
 
               //Get image size
               $imgSize = filesize($_files[$fileToUpload]["tmp_name"]);
-              
+
               EisLog::Record(__FUNCTION__ . " File Type  = " . $imgFileType);
-              
+
               if ( EIS_DEBUG ) {
                   EisLog::Record(__FUNCTION__ . " File Type  = " . $imgFileType);
                   EisLog::Record(__FUNCTION__ . " File Size  = " . $imgSize);
-                  var_dump($imgSize);
               }
 
               //Check file type for jpeg or png
@@ -214,7 +241,7 @@
                   if ( $ret == false ) {
                       return null;
                   } else {
-                      return "media/img/". $target_file_name;
+                      return "media/img/" . $target_file_name;
                   }
               }
           }
@@ -226,6 +253,10 @@
   if ( isset($_REQUEST) ) {
 
       $method = $_SERVER['REQUEST_METHOD'];
+      global $g_server, $g_pwd, $g_user, $g_db;
+
+      $ctrl = new EisTeamController($g_server, $g_user, $g_pwd, $g_db);
+      $MsgObj = new EisMessage();
 
       switch ($method) {
           //Handle Post Request
@@ -250,30 +281,37 @@
                   echo "Error : " . $ex->getMessage();
               }
 
+              $MsgObj->msg_id = $_POST["msg_id"];
+              $MsgObj->msg_data = $_POST;          
               break;
 
           //Handle Get Request
           case "GET":
-              global $g_server, $g_pwd, $g_user, $g_db;
-
-              try {
-                  $ctrl = new EisTeamController($g_server, $g_user, $g_pwd, $g_db);
-                  $MsgObj = new EisMessage();
                   if ( isset($_GET["msg_id"]) ) {
                       $MsgObj->msg_id = $_GET["msg_id"];
                   }
 
                   $MsgObj->msg_data = $_GET;
-
-                  $result = $ctrl->Dispatcher($MsgObj);
-                  $json_obj = json_encode($result);
-                  
-                  //send response
-                  echo $json_obj;
-              } catch (Exception $ex) {
-                  echo "Error : " . $ex->getMessage();
-              }
               break;
+      }
+
+      if ( EIS_DEBUG ) {
+          EisLog::Record(__FUNCTION__ . "MSG_ID: " . $MsgObj->msg_id );
+      }
+
+      try {
+          $result = $ctrl->Dispatcher($MsgObj);
+          EisResponse::$res_array['msg_id'] = $MsgObj->msg_id;
+          EisResponse::$res_array['data'] = $result;
+          EisResponse::$res_array['errno'] = $ctrl->GetErrorNum();
+          EisResponse::$res_array['err_msg'] = $ctrl->GetErrorMsg();
+          
+          $json_obj = json_encode(EisResponse::$res_array);
+
+          //send response
+          echo $json_obj;
+      } catch (Exception $e) {
+          echo "Error : " . $ex->getMessage();
       }
   }
 
@@ -289,7 +327,6 @@
 
           $members = $ctrl->GetAllMembers();
           $json_obj = json_encode($members);
-//          var_dump($json_obj);
           echo $json_obj;
       } catch (Exception $ex) {
           echo "Error : " . $ex->getMessage();
@@ -302,7 +339,6 @@
           $ctrl = new EisTeamController($g_server, $g_user, $g_pwd, $g_db);
 
           $ctrl->HandleFileUpload($_SESSION["FILES"], "profile_pic");
-          
       } catch (Exception $ex) {
           echo "Error : " . $ex->getMessage();
       }
